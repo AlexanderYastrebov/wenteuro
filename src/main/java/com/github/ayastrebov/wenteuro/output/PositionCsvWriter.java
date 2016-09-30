@@ -31,6 +31,7 @@ public class PositionCsvWriter {
 
         mapper.addMixIn(Position.class, PositionMixIn.class);
         mapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
+        mapper.configure(JsonGenerator.Feature.AUTO_CLOSE_TARGET, false);
 
         CsvSchema schema = CsvSchema.builder()
             .addColumns(Arrays.asList("_id", "name", "type", "latitude", "longitude"), CsvSchema.ColumnType.STRING)
@@ -42,7 +43,9 @@ public class PositionCsvWriter {
 
     public void write(List<Position> positions) {
         try {
-            writer.writeValues(out).writeAll(positions);
+            writer.writeValues(out)
+                .writeAll(positions)
+                .close();
         } catch (IOException ex) {
             throw new UncheckedIOException(ex);
         }

@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.Before;
@@ -26,7 +27,12 @@ public class PositionCsvWriterTest {
 
     @Before
     public void setUp() {
-        buffer = new ByteArrayOutputStream();
+        buffer = new ByteArrayOutputStream() {
+            @Override
+            public void close() throws IOException {
+                throw new UnsupportedOperationException("Should not be closed");
+            }
+        };
         unit = new PositionCsvWriter(buffer);
     }
 
@@ -40,6 +46,13 @@ public class PositionCsvWriterTest {
         unit.write(positions);
 
         assertLines("Berlin.csv");
+    }
+
+    @Test
+    public void shouldWriteHeaderForEmptyPositions() throws IOException {
+        unit.write(Collections.emptyList());
+
+        assertLines("header.csv");
     }
 
     private void assertLines(String name) throws IOException {
