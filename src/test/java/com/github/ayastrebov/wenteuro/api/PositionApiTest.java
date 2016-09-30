@@ -19,17 +19,22 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 
-public class PositionApiGatewayTest {
+public class PositionApiTest {
 
     private Client client;
-    private PositionApiGateway unit;
+    private PositionApi unit;
 
     @Before
     public void setUp() {
         client = mock(Client.class);
 
-        unit = PositionApiGatewayFactory.create(client);
+        unit = PositionApiFactory.create(client);
     }
 
     @Test
@@ -51,6 +56,6 @@ public class PositionApiGatewayTest {
     }
 
     private InputStream resource(String name) {
-        return PositionApiGatewayTest.class.getResourceAsStream("/data/" + name);
+        return PositionApiTest.class.getResourceAsStream("/data/" + name);
     }
 }

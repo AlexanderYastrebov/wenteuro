@@ -1,14 +1,14 @@
 package com.github.ayastrebov.wenteuro;
 
-import com.github.ayastrebov.wenteuro.api.PositionApiGateway;
 import com.github.ayastrebov.wenteuro.output.PositionCsvWriter;
+import com.github.ayastrebov.wenteuro.api.PositionApi;
 
 public class Processor {
 
-    private final PositionApiGateway api;
+    private final PositionApi api;
     private final PositionCsvWriter writer;
 
-    public Processor(PositionApiGateway api, PositionCsvWriter writer) {
+    public Processor(PositionApi api, PositionCsvWriter writer) {
         this.api = api;
         this.writer = writer;
     }

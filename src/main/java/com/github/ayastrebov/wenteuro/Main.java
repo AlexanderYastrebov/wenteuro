@@ -1,6 +1,6 @@
 package com.github.ayastrebov.wenteuro;
 
-import com.github.ayastrebov.wenteuro.api.PositionApiGatewayFactory;
+import com.github.ayastrebov.wenteuro.api.PositionApiFactory;
 import com.github.ayastrebov.wenteuro.output.PositionCsvWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -19,7 +19,7 @@ public class Main {
 
         try (OutputStream out = System.out) {
             new Processor(
-                PositionApiGatewayFactory.create(),
+                PositionApiFactory.create(),
                 new PositionCsvWriter(out)
             ).process(arguments.getText());
         }

@@ -13,16 +13,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Value;
 
-public class PositionApiGatewayFactory {
+public class PositionApiFactory {
 
-    private PositionApiGatewayFactory() {
+    private PositionApiFactory() {
     }
 
-    public static PositionApiGateway create() {
+    public static PositionApi create() {
         return create(Feign.builder());
     }
 
-    static PositionApiGateway create(Client client) {
+    static PositionApi create(Client client) {
         return create(Feign.builder().client(client));
     }
 
@@ -53,7 +53,7 @@ public class PositionApiGatewayFactory {
         List<PositionDto> getSuggestions(@Param("city") String text);
     }
 
-    private static PositionApiGateway create(Feign.Builder builder) {
+    private static PositionApi create(Feign.Builder builder) {
         ObjectMapper mapper = new ObjectMapper();
 
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);

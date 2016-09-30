@@ -1,6 +1,6 @@
-package com.github.ayastrebov.wenteuro.api;
+package com.github.ayastrebov.wenteuro;
 
-import com.github.ayastrebov.wenteuro.Processor;
+import com.github.ayastrebov.wenteuro.api.PositionApi;
 import com.github.ayastrebov.wenteuro.model.Position;
 import com.github.ayastrebov.wenteuro.output.PositionCsvWriter;
 import org.junit.Before;
@@ -12,14 +12,14 @@ import static org.mockito.Mockito.verify;
 
 public class ProcessorTest {
 
-    private PositionApiGateway api;
+    private PositionApi api;
     private PositionCsvWriter writer;
 
     private Processor unit;
 
     @Before
     public void setUp() {
-        api = mock(PositionApiGateway.class);
+        api = mock(PositionApi.class);
         writer = mock(PositionCsvWriter.class);
 
         unit = new Processor(api, writer);
