@@ -12,11 +12,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.junit.Before;
+import org.junit.Test;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import org.junit.Before;
-import org.junit.Test;
 
 public class PositionCsvWriterTest {
 
@@ -51,7 +52,7 @@ public class PositionCsvWriterTest {
 
             assertEquals(expectedLines.size(), resultLines.size());
             for (int i = 0; i < expectedLines.size(); i++) {
-                assertThat("Line " + (i + 1) + " does not match", expectedLines.get(i), is(resultLines.get(i)));
+                assertThat("Line " + (i + 1) + " does not match", resultLines.get(i), is(expectedLines.get(i)));
             }
         }
     }
